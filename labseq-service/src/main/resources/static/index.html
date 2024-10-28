@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LabSeq Sequence</title>
+</head>
+<body>
+<h1>LabSeq Calculator</h1>
+<input type="number" id="index" placeholder="Enter index" />
+<button onclick="fetchLabSeq()">Get LabSeq Value</button>
+<p id="result"></p>
+
+<script>
+    function fetchLabSeq() {
+        const index = document.getElementById("index").value;
+        fetch(`http://localhost:8080/labseq/${index}`)
+            .then(response => response.text())
+            .then(data => document.getElementById("result").innerText = `LabSeq(${index}) = ${data}`)
+            .catch(error => console.error('Error:', error));
+    }
+</script>
+</body>
+</html>
